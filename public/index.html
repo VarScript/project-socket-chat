@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rest Server</title>
+
+    <!-- Uniconts -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-center py-3 mb-4 mt-4 ">
+        <a href="https://varscript.github.io/" target="_blank" class="d-flex align-items-center col-md-3 mb-2 mb-md-9 text-dark text-decoration-none">
+            <img src="https://res.cloudinary.com/dxwsqccy0/image/upload/v1663615300/RestServer/colorHorizontalVersions_qscxs6.png" alt="Logo" width="250"  class="d-inline-block align-text-top">
+        </a>
+        </header>
+    </div>
+    
+    <main>
+        
+        <div class="container col-xl-10 col-xxl-7 px-4 py-5">
+            <div class="row align-items-center g-lg-5 py-5">
+            <div class="col-lg-7 text-center text-lg-start text-light">
+                <h1 class="display-4 fw-bold lh-1 mb-3">Rest Serverver</h1>
+                <p class="col-lg-10 fs-4">This is a Rest Server built on the <a href="https://www.udemy.com/course/node-de-cero-a-experto/" target="_blank" class="text-decoration-none text-light ">Node.js Zero to Expert course on Udemy</a>. It has the CRUD matrix (Create, Read, Update and Delete). It is make with Postman, an application that we are permitted tested pettition HTTPS request</p>
+                <a href="https://documenter.getpostman.com/view/22974338/2s7YfKBvMA" target="_blank">
+                    <button type="button" class="btn btn-outline-light mt-4 me-1">Documentation</button>
+                </a>
+                <a href="https://github.com/VarScript/project-queue-application" target="_blank" class="btn btn-outline-light mt-4">
+                    <i class="uil uil-github-alt"></i>
+                </a>
+            </div>
+            <div class="col-md-10 mx-auto col-lg-4 text-center">
+                <div class="d-grid gap-2 col-8 mx-auto">
+                    <div id="g_id_onload"
+                    data-client_id="427495275433-ch09o4q37i2go329g1t6sg58nhl4e7do.apps.googleusercontent.com"
+                    data-auto_prompt="false"
+                    data-callback="handleCredentialResponse">
+                    </div>
+                    <div class="g_id_signin"
+                    data-type="standard"
+                    data-size="large"
+                    data-theme="outline"
+                    data-text="sign_in_with"
+                    data-shape="rectangular"
+                    data-logo_alignment="left">
+                    </div>
+                </div>
+                <hr class="my-4">
+                <small class="text-muted ">This is the button for start session with Google</small>
+                </form>
+            </div>
+            </div>
+        </div>
+
+        <button id="google_singout">
+            Singout
+        </button>
+
+
+    </main>
+    
+    <footer>
+        <div class="container">
+            <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom border-secondary pb-3 mb-3">
+            </ul>
+            <p class="text-center text-muted">© 2022 VarScrip</p>
+            </footer>
+        </div>
+    </footer>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+    <!-- Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+
+    <!-- Google Acount -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+        function handleCredentialResponse(response) {
+            
+            // Google token : ID_TOKEN
+            //console.log('id_token', response.credential);
+            const body = { id_token: response.credential };
+
+            fetch( window.location.hostname.includes('localhost')
+            
+            ? 'http://localhost:8080/api/auth/google' : 'https://restserver-nodejs-varscrip.herokuapp.com/api/auth/google' , {
+                method: 'POST',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify(body)
+            })
+                .then( resp => resp.json() )
+                .then( resp => {
+                    console.log(resp)
+                    localStorage.setItem( 'email', resp.user.email )
+                })
+                .catch( console.warn );
+        
+        }
+
+        const button = document.getElementById('google_singout');
+        button.onclick = () => {
+            console.log( google.accounts.id )
+            google.accounts.id.disableAutoSelect()
+
+            google.accounts.id.revoke( localStorage.getItem( 'email' ), done => {
+                localStorage.clear();
+                location.reload();
+            })
+        }
+
+    </script>
+</body>
+</html>
