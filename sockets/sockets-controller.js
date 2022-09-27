@@ -1,8 +1,14 @@
+const  { Socket } = require('socket.io')
+const { checkJWT } = require("../helpers");
 
 
-const socketController = ( socket ) => {
+const socketController = async( socket = new Socket() ) => {
+    const user = await checkJWT(socket.handshake.headers['x-token']);
+    if ( !user ) {
+        return socket.disconnect();
+    }
 
-    // console.log('client connet', socket.id);
+    console.log( 'It is connect the user:', user.name );
 }
 
 module.exports = {

@@ -20,9 +20,19 @@ const validateJWT = async() => {
     });
 
     const { user: userDB, token: tokenBD  } = await resp.json();
-    console.log(userDB, tokenBD);
     localStorage.setItem('token', tokenBD);
     user = userDB;
+    document.title = user.name;
+    
+    await socketConnect();
+}
+
+const socketConnect = async() => {
+    const socket = io({
+        'extraHeaders': {
+            'x-token': localStorage.getItem('token')
+        }
+    });
 }
 
 const main = async() => {
@@ -31,5 +41,3 @@ const main = async() => {
 }
 
 main();
-
-// const chat = io();
