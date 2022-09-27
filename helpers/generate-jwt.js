@@ -29,8 +29,13 @@ const checkJWT = async( token = '' ) => {
 
         const { uid } = jwt.verify( token, process.env.SECRETORPRIVATEKEY );
         const user = await User.findById( uid );
+
         if ( user ) {
+            if ( user.status ) {
                 return user;
+            } else {
+                return null;
+            }
         } else {
             return null;
         }
