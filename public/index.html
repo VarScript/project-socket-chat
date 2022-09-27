@@ -1,3 +1,4 @@
+<!-- https://themes.getbootstrap.com/product/space-multipurpose-responsive-template/ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,70 +14,102 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-
-    <div class="container">
-        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-center py-3 mb-4 mt-4 ">
-        <a href="https://varscript.github.io/" target="_blank" class="d-flex align-items-center col-md-3 mb-2 mb-md-9 text-dark text-decoration-none">
-            <img src="https://res.cloudinary.com/dxwsqccy0/image/upload/v1663615300/RestServer/colorHorizontalVersions_qscxs6.png" alt="Logo" width="250"  class="d-inline-block align-text-top">
-        </a>
-        </header>
-    </div>
     
-    <main>
+    <header class="p-4 text-bg-light">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="https://varscript.github.io/" class="d-flex align-items-center mb-2 mb-lg-0 me-5 text-dark text-decoration-none">
+                    <img src="https://res.cloudinary.com/dxwsqccy0/image/upload/v1664289109/socket-chat/blackScaleHorizontalVersions_nmdkcb.png" alt="Logo" width="250">
+                </a>
         
-        <div class="container col-xl-10 col-xxl-7 px-4 py-5">
-            <div class="row align-items-center g-lg-5 py-5">
-            <div class="col-lg-7 text-center text-lg-start text-light">
-                <h1 class="display-4 fw-bold lh-1 mb-3">Rest Serverver</h1>
-                <p class="col-lg-10 fs-4">This is a Rest Server built on the <a href="https://www.udemy.com/course/node-de-cero-a-experto/" target="_blank" class="text-decoration-none text-light ">Node.js Zero to Expert course on Udemy</a>. It has the CRUD matrix (Create, Read, Update and Delete). It is make with Postman, an application that we are permitted tested pettition HTTPS request</p>
-                <a href="https://documenter.getpostman.com/view/22974338/2s7YfKBvMA" target="_blank">
-                    <button type="button" class="btn btn-outline-light mt-4 me-1">Documentation</button>
-                </a>
-                <a href="https://github.com/VarScript/project-queue-application" target="_blank" class="btn btn-outline-light mt-4">
-                    <i class="uil uil-github-alt"></i>
-                </a>
-            </div>
-            <div class="col-md-10 mx-auto col-lg-4 text-center">
-                <div class="d-grid gap-2 col-8 mx-auto">
-                    <div id="g_id_onload"
-                    data-client_id="427495275433-ch09o4q37i2go329g1t6sg58nhl4e7do.apps.googleusercontent.com"
-                    data-auto_prompt="false"
-                    data-callback="handleCredentialResponse">
-                    </div>
-                    <div class="g_id_signin"
-                    data-type="standard"
-                    data-size="large"
-                    data-theme="outline"
-                    data-text="sign_in_with"
-                    data-shape="rectangular"
-                    data-logo_alignment="left">
-                    </div>
+                <ul class="nav col-12 col-lg-6 me-lg-auto mb-2 justify-content-center mb-md-0"> 
+                    <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+                    <li><a href="#" class="nav-link px-2 text-dark">Features</a></li>
+                    <li><a href="#" class="nav-link px-2 text-dark">Pricing</a></li>
+                    <li><a href="#" class="nav-link px-2 text-dark">FAQs</a></li>
+                    <li><a href="#" class="nav-link px-2 text-dark">About</a></li>
+                </ul>
+
+                <div class="text-end">
+                    <button type="button" class="btn btn-outline-dark me-2">Login</button>
+                    <button type="button" class="btn btn-primary" id="google_singout" >Singout</button>
                 </div>
-                <hr class="my-4">
-                <small class="text-muted ">This is the button for start session with Google</small>
-                </form>
-            </div>
             </div>
         </div>
-        
-        <form class="d-grid col-2 ">
-            <input type="text" name="email" class="form-control mb-2" placeholder="Email">
-            <input type="text" name="password" class="form-control mb-2" placeholder="Password">
-
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-
-        <br><br><br>
-        <button id="google_singout">
-            Singout
-        </button>
+    </header>
+<br><br>
+<br><br>
 
 
+    <main class="container mb-5">
+        <div class="row justify-content-center align-items-lg-center">
+            <div class="col-md-8 col-lg-6 mb-7 mb-lg-0">
+                <div class="pe-lg-3 mb-7">
+                    <h1 class="display-1 fw-bold text-warning mb-3 mb-md-5">Coffee Store</h1>
+                    <p class="lead text-white">Built on standard web technology, teams use Space to build beautiful cross-platform hybrid apps in a fraction of the time.</p>
+                    <a href="https://documenter.getpostman.com/view/22974338/2s7YfKBvMA" target="_blank">
+                        <button type="button" class="btn btn-outline-light mt-4 me-1">Documentation</button>
+                    </a>
+                    <a href="https://github.com/VarScript/project-queue-application" target="_blank" class="btn btn-outline-light mt-4">
+                        <i class="uil uil-github-alt"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-8 col-lg-6">
+                <div class="ps-lg-5">
+                    <div class="card card-lg">
+                        <div class="card-body">
+                            <div class="row align-items-sm-center mb-5">
+                                <div class="col-sm-auto order-sm-2 mb-3 mb-sm-0">
+                                    <img class="avatar avatar-xxl avatar-4x3" src="./join.png" width="200" alt="Image Description">
+                                </div>
+                                <div class="col-sm">
+                                    <h5 class="card-title">Join Space</h5>
+                                    <p class="card-text">Hundreds of companies using Space to build their business.</p>
+                                </div>
+                            </div>
+                            <form>
+                                <div class="mb-4">
+                                    <label class="form-label">Your email</label>
+                                    <input type="text" class="form-control form-control-lg" name="email" placeholder="example@site.com" aria-label="example@site.com" required="" data-msg="Please enter a valid email address">
+                                </div>
+                                <div class="mb-5">
+                                    <label class="form-label">Your password</label>
+                                    <input type="password" class="form-control form-control-lg" name="password" placeholder="Type your password" aria-label="Type your password" required="" data-msg="Please enter your password">
+                                </div>
+                                <div class="d-grid text-center">
+                                    <button type="submit" class="btn btn-primary btn-lg">Login</button>
+
+                                    <div class="p-3">
+                                        <div id="g_id_onload"
+                                        data-client_id="427495275433-ch09o4q37i2go329g1t6sg58nhl4e7do.apps.googleusercontent.com"
+                                        data-auto_prompt="false"
+                                        data-callback="handleCredentialResponse">
+                                        </div>
+                                        <div class="g_id_signin"
+                                        data-type="standard"
+                                        data-size="large"
+                                        data-theme="outline"
+                                        data-text="sign_in_with"
+                                        data-shape="rectangular"
+                                        data-logo_alignment="left">
+                                        </div>
+                                    </div>
+
+                                    <span class="form-text mb-4">Need help? <a class="link" href="./page-help-center.html">Visit our Help Center <i class="bi-chevron-right small ms-1"></i></a></span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     
     <footer>
         <div class="container">
-            <footer class="py-3 my-4">
+            <footer class="py-5 my-4">
             <ul class="nav justify-content-center border-bottom border-secondary pb-3 mb-3">
             </ul>
             <p class="text-center text-muted">© 2022 VarScrip</p>
