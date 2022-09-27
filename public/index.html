@@ -58,7 +58,15 @@
             </div>
             </div>
         </div>
+        
+        <form class="d-grid col-2 ">
+            <input type="text" name="email" class="form-control mb-2" placeholder="Email">
+            <input type="text" name="password" class="form-control mb-2" placeholder="Password">
 
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+
+        <br><br><br>
         <button id="google_singout">
             Singout
         </button>
@@ -85,42 +93,6 @@
 
     <!-- Google Acount -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script>
-        function handleCredentialResponse(response) {
-            
-            // Google token : ID_TOKEN
-            //console.log('id_token', response.credential);
-            const body = { id_token: response.credential };
-
-            fetch( window.location.hostname.includes('localhost')
-            
-            ? 'http://localhost:8080/api/auth/google' : 'https://restserver-nodejs-varscrip.herokuapp.com/api/auth/google' , {
-                method: 'POST',
-                headers: {
-                    'Content-Type':'application/json'
-                },
-                body: JSON.stringify(body)
-            })
-                .then( resp => resp.json() )
-                .then( resp => {
-                    console.log(resp)
-                    localStorage.setItem( 'email', resp.user.email )
-                })
-                .catch( console.warn );
-        
-        }
-
-        const button = document.getElementById('google_singout');
-        button.onclick = () => {
-            console.log( google.accounts.id )
-            google.accounts.id.disableAutoSelect()
-
-            google.accounts.id.revoke( localStorage.getItem( 'email' ), done => {
-                localStorage.clear();
-                location.reload();
-            })
-        }
-
-    </script>
+    <script src="./js/auth.js"></script>
 </body>
 </html>
