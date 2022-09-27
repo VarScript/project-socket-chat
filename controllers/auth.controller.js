@@ -1,4 +1,4 @@
-const { response, json } = require("express");
+const { response, json, request } = require("express");
 const bcryptjs = require('bcryptjs')
 
 
@@ -104,9 +104,22 @@ const googleSingIn = async (req, res = response ) => {
     }
 }
 
+const tokenRenew = async ( req, res ) => {
+
+    const { user } = req;
+
+    // Generate the JWT
+    const token = await generateJWT( user.id );
+
+    res.json({
+        user,
+        token
+    })
+}
 
 
 module.exports = {
     login,
-    googleSingIn
+    googleSingIn,
+    tokenRenew
 }
