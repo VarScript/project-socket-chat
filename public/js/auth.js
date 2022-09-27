@@ -49,6 +49,7 @@ function handleCredentialResponse(response) {
     })
         .then( resp => resp.json() )
         .then( ({token}) => {
+            console.log(token);
             localStorage.setItem('token', token);
             // localStorage.setItem( 'email', resp.user.email )
         })
