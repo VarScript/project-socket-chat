@@ -49,9 +49,7 @@ const socketConnect = async() => {
         console.log('Offline');
     });
 
-    socket.on('recive-message', ( payload) => {
-        console.log(payload);
-    });
+    socket.on('recive-message', drawMessage);
 
     socket.on('user-active', drawUsers );
 
@@ -61,7 +59,6 @@ const socketConnect = async() => {
 }
 
 const drawUsers = ( users = [] ) => {
-
     let usersHtml = '';
     users.forEach( ({ name, uid }) => {
 
@@ -76,6 +73,24 @@ const drawUsers = ( users = [] ) => {
     });
 
     ulUsers.innerHTML = usersHtml;
+}
+
+
+const drawMessage = ( message = [] ) => {
+    let messageHtml = '';
+    message.forEach( ({ name, message }) => {
+
+        messageHtml += `
+        <li>
+            <p>
+                <spam class="text-primary">${ name }: </spam>
+                <span>${ message }</span>
+            </p>
+        </li>
+        `;
+    });
+
+    ulMessage.innerHTML = messageHtml;
 }
 
 txtMessage.addEventListener('keyup', ({ keyCode }) => {
