@@ -19,8 +19,16 @@ const socketController = async( socket = new Socket(), io ) => {
     socket.on('disconnect', () =>{
         chatMessage.disconnectUser( user.id );
         io.emit('user-active', chatMessage.usersArr );
+    });
 
+
+    socket.on('send-message', ({ uid, message}) => {
+
+        chatMessage.sendMessage(user.id, user.name, message );
+        io.emit('recive-message', chatMessage.last10 );
     })
+
+
 }
 
 module.exports = {
