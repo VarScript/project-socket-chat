@@ -7,11 +7,11 @@ let user = null;
 let socket = null;
 
 // Reference HTML
-const txtUid     = document.querySelector('#const txtUid');
-const txtMessage = document.querySelector('#const txtMessage');
-const ulUsers    = document.querySelector('#const ulUsers');
-const ulMessage  = document.querySelector('#const ulMessage');
-const btnExit    = document.querySelector('#const btnExit');
+const txtUid     = document.querySelector('#txtUid');
+const txtMessage = document.querySelector('#txtMessage');
+const ulUsers    = document.querySelector('#ulUsers');
+const ulMessage  = document.querySelector('#ulMessage');
+const btnExit    = document.querySelector('#btnExit');
 
 // validate the token of the localStorage
 const validateJWT = async() => {
@@ -53,13 +53,29 @@ const socketConnect = async() => {
 
     });
 
-    socket.on('user-active', (payload) => {
-        console.log(payload);
-    });
+    socket.on('user-active', drawUsers );
 
     socket.on('message-private', () => {
         
     });
+}
+
+const drawUsers = ( users = [] ) => {
+
+    let usersHtml = '';
+    users.forEach( ({ name, uid }) => {
+
+        usersHtml += `
+        <li>
+            <p>
+                <h5 class="text-success">${ name }</h5>
+                <span class="fs-6 text-muted">${ uid }</span>
+            </p>
+        </li>
+        `;
+    });
+
+    ulUsers.innerHTML = usersHtml;
 }
 
 const main = async() => {
