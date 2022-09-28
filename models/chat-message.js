@@ -6,7 +6,7 @@ class Message {
     }
 }
 
-class ChatMessge {
+class ChatMessage {
 
     constructor() {
         this.messages = [];
@@ -37,4 +37,4 @@ class ChatMessge {
     }
 }
 
-module.exports = ChatMessge;
+module.exports = ChatMessage;
