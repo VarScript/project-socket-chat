@@ -14,7 +14,10 @@ const socketController = async( socket = new Socket(), io ) => {
     // Add user connected
     chatMessage.connectUser( user );
     io.emit('user-active', chatMessage.usersArr );
-    socket.emit('recive-message', chatMessage.last10)
+    socket.emit('recive-message', chatMessage.last10);
+
+    // connect special room
+    socket.join( user.id ); // gobal, socket.id, user.id
 
     // clean user discconect
     socket.on('disconnect', () =>{
@@ -25,10 +28,14 @@ const socketController = async( socket = new Socket(), io ) => {
 
     socket.on('send-message', ({ uid, message}) => {
 
-        chatMessage.sendMessage(user.id, user.name, message );
-        io.emit('recive-message', chatMessage.last10 );
-    })
-
+        if( uid ) {
+            // Pivate massage
+            socket.to( uid ).emit('message-private', { of: user.name, message })
+        } else {
+            chatMessage.sendMessage(user.id, user.name, message );
+            io.emit('recive-message', chatMessage.last10 );
+        }
+    });
 
 }
 

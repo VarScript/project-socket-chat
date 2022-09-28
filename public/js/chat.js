@@ -53,8 +53,8 @@ const socketConnect = async() => {
 
     socket.on('user-active', drawUsers );
 
-    socket.on('message-private', () => {
-        
+    socket.on('message-private', (payload) => {
+        console.log('Private: ', payload);
     });
 }
 
