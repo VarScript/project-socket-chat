@@ -21,41 +21,68 @@
                     <img src="https://res.cloudinary.com/dxwsqccy0/image/upload/v1664289109/socket-chat/blackScaleHorizontalVersions_nmdkcb.png" alt="Logo" width="250">
                 </a>
         
-                <ul class="nav col-12 col-lg-6 me-lg-auto mb-2 justify-content-center mb-md-0"> 
-                    <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-                    <li><a href="#" class="nav-link px-2 text-dark">Features</a></li>
-                    <li><a href="#" class="nav-link px-2 text-dark">Pricing</a></li>
-                    <li><a href="#" class="nav-link px-2 text-dark">FAQs</a></li>
-                    <li><a href="#" class="nav-link px-2 text-dark">About</a></li>
-                </ul>
+                <ul class="nav col-12 col-lg-6 me-lg-auto mb-2 justify-content-center mb-md-0"></ul>
 
                 <div class="text-end">
-                    <button type="button" class="btn btn-outline-dark me-2">Login</button>
                     <button type="button" class="btn btn-primary" id="google_singout" >Logout</button>
                 </div>
             </div>
         </div>
     </header>   
 
+
+
+        
     <main class="container">
-        <div class="col-6 mb-5">
-            <div class="row mt-5 text-light">
-                <h3>Send Message</h3>
-                <input type="text" id="txtUid" class="form-control mb-2" placeholder="Uid" autocomplete="off">
-                <input type="text" id="txtMessage" class="form-control mb-2" placeholder="Message" autocomplete="off">
-                <h3>Users</h3>
-                <ul id="ulUsers"></ul>
-            </div>
-        </div>
+        
+        <h1 class="display-3 fw-bold text-light mb-5  text-center">Message</h1>
 
-        <div class="col-6 mb-5">
-            <div class="row mt-5 text-light">
-                <h3>Complete chat</h3>
-                <ul id="ulMessage"></ul>
-            </div>
-        </div>
+		<div class="card">
+			<div class="row g-0">
 
-        <button id="btnExit" class="btn btn-light">Logout</button>
+				<div class="col-12 col-lg-5 col-xl-3 border-right bg-secondary bg-opacity-10">
+					<div class="px-4 d-none d-md-block">
+						<div class="d-flex align-items-center">
+							<div class="flex-grow-1 my-5 p-3 me-5 ">
+                                <h3 class="fw-bold mb-4">Send Message </h3>
+                                <input type="text" id="txtUid" class="form-control mb-2" placeholder="Uid of the person" autocomplete="off">
+                                <input type="text" id="txtMessage" class="form-control mb-2" placeholder="Message" autocomplete="off">
+                                
+                                <h3 class="fw-bold mb-4 my-5 mb-0">Users</h3>
+                                <ul id="ulUsers" class="list-unstyled mb-4"></ul>
+                                
+                                <h3>Private chat</h3>
+                                <ul id="ulMessagePv" class="list-unstyled mb-4"></ul>
+							</div>
+						</div>
+					</div>
+					<hr class="d-block d-lg-none mt-1 mb-0">
+				</div>
+
+				<div class="col-12 col-lg-7 col-xl-9 ">
+					<div class="py-4 border-bottom d-none d-lg-block ">
+						<div class="d-flex align-items-center py-1">
+							<div class="flex-grow-1 pl-3 text-center fs-1 ">
+								<strong>Messages of all Users</strong>
+							</div>
+                            
+							
+						</div>
+					</div>
+					<div class="position-relative">
+						<div class="chat-messages p-4">
+							<div class="chat-message-left pb-4">
+								<div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
+                                    <ul id="ulMessage"></ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
     </main>
 
     <footer>

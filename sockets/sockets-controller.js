@@ -26,11 +26,11 @@ const socketController = async( socket = new Socket(), io ) => {
     });
 
 
-    socket.on('send-message', ({ uid, message}) => {
+    socket.on('send-message', ({ uid, message }) => {
 
         if( uid ) {
             // Pivate massage
-            socket.to( uid ).emit('message-private', { of: user.name, message })
+            socket.to( uid ).emit('message-private', { since: user.name, message });
         } else {
             chatMessage.sendMessage(user.id, user.name, message );
             io.emit('recive-message', chatMessage.last10 );

@@ -7,11 +7,14 @@ let user = null;
 let socket = null;
 
 // Reference HTML
-const txtUid     = document.querySelector('#txtUid');
-const txtMessage = document.querySelector('#txtMessage');
-const ulUsers    = document.querySelector('#ulUsers');
-const ulMessage  = document.querySelector('#ulMessage');
-const btnExit    = document.querySelector('#btnExit');
+const txtUid       = document.querySelector('#txtUid');
+const txtMessage   = document.querySelector('#txtMessage');
+const ulUsers      = document.querySelector('#ulUsers');
+const ulMessage    = document.querySelector('#ulMessage');
+const ulMessagePv  = document.querySelector('#ulMessagePv');
+const btnExit      = document.querySelector('#btnExit');
+
+
 
 // validate the token of the localStorage
 const validateJWT = async() => {
@@ -34,6 +37,8 @@ const validateJWT = async() => {
     await socketConnect();
 }
 
+
+
 const socketConnect = async() => {
     socket = io({
         'extraHeaders': {
@@ -50,23 +55,24 @@ const socketConnect = async() => {
     });
 
     socket.on('recive-message', drawMessage);
+    
+    socket.on('message-private', drawPrivateMessage);
 
     socket.on('user-active', drawUsers );
 
-    socket.on('message-private', (payload) => {
-        console.log('Private: ', payload);
-    });
 }
+
+
 
 const drawUsers = ( users = [] ) => {
     let usersHtml = '';
     users.forEach( ({ name, uid }) => {
 
         usersHtml += `
-        <li>
+        <li class="mb-5">
             <p>
-                <h5 class="text-success">${ name }</h5>
-                <span class="fs-6 text-muted">${ uid }</span>
+                <h5 class="text-primary fw-semibold">${ name }</h5>
+                <span class="text-dark">${ uid }</span>
             </p>
         </li>
         `;
@@ -76,14 +82,15 @@ const drawUsers = ( users = [] ) => {
 }
 
 
+
 const drawMessage = ( message = [] ) => {
     let messageHtml = '';
     message.forEach( ({ name, message }) => {
 
         messageHtml += `
-        <li>
+        <li class="list-unstyled">
             <p>
-                <spam class="text-primary">${ name }: </spam>
+                <span class="text-primary fw-semibold">${ name }: </span>
                 <span>${ message }</span>
             </p>
         </li>
@@ -91,7 +98,29 @@ const drawMessage = ( message = [] ) => {
     });
 
     ulMessage.innerHTML = messageHtml;
+    
 }
+
+const drawPrivateMessage = ( {message, since} ) => {
+    let messageHtml = '';
+    let arr = [{since, message}];
+    arr.forEach( ({since, message}) => {
+
+        messageHtml = `
+        <li>
+            <p>
+                <span class="text-primary fw-semibold">${ since }: </span>
+                <span>${ message }</span>
+            </p>
+        </li>
+        `;
+    });
+
+    ulMessagePv.innerHTML = messageHtml;
+}
+
+
+
 
 txtMessage.addEventListener('keyup', ({ keyCode }) => {
     const message = txtMessage.value;
@@ -102,8 +131,7 @@ txtMessage.addEventListener('keyup', ({ keyCode }) => {
     
     socket.emit('send-message', { message, uid } );
     txtMessage.value = '';
-
-})
+});
 
 
 const main = async() => {

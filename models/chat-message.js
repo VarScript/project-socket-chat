@@ -17,6 +17,7 @@ class ChatMessage {
         this.messages = this.messages.splice(0,10);
         return this.messages;
     }
+    
 
     get usersArr() {
         return Object.values( this.users );
