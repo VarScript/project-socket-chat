@@ -120,6 +120,17 @@ const drawPrivateMessage = ( {message, since} ) => {
 }
 
 
+const button = document.getElementById('btnExit');
+    button.onclick = () => {
+        console.log( google.accounts.id )
+        google.accounts.id.disableAutoSelect()
+
+        google.accounts.id.revoke( localStorage.getItem( 'email' ), done => {
+            localStorage.clear();
+            location.reload();
+        });
+    }
+
 
 
 txtMessage.addEventListener('keyup', ({ keyCode }) => {

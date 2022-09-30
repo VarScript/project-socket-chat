@@ -61,11 +61,11 @@ function handleCredentialResponse(response) {
 
     const button = document.getElementById('google_singout');
     button.onclick = () => {
-    console.log( google.accounts.id )
-    google.accounts.id.disableAutoSelect()
+        console.log( google.accounts.id )
+        google.accounts.id.disableAutoSelect()
 
-    google.accounts.id.revoke( localStorage.getItem( 'email' ), done => {
-        localStorage.clear();
-        location.reload();
-})
-}
+        google.accounts.id.revoke( localStorage.getItem( 'email' ), done => {
+            localStorage.clear();
+            location.reload();
+        });
+    }
