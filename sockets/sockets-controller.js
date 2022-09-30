@@ -36,7 +36,6 @@ const socketController = async( socket = new Socket(), io ) => {
             io.emit('recive-message', chatMessage.last10 );
         }
     });
-
 }
 
 module.exports = {
