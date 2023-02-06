@@ -9,7 +9,7 @@ This is a socket server where we establish communication with our WebSocket Serv
  <br><br>
 
 ![](https://res.cloudinary.com/dxwsqccy0/image/upload/v1664502478/socket-chat/Screenshot_2022-09-29_204728_kkpefr.png)
-<p align="center"> <br><a  href="https://socket-chat-varscript.herokuapp.com" target="_blank" class="text-decoration-none text-light ">Go to Socket chat</a>
+<p align="center"> <br><a  href="https://project-socket-chat-production.up.railway.app" target="_blank" class="text-decoration-none text-light ">Go to Socket chat</a>
 <br>
   
  <br><br>
